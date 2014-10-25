@@ -1,5 +1,0 @@
-`((tag "Debian")
-  (lang "ja")
-  (title "Debianのアップデート")
-  (modify-date 2014 10 23)
-  (contents (p "アップデートがありました。")))
