@@ -51,8 +51,8 @@
   ;; modify-date of filesystem.
   ;; (-> String (Listof Any))
   (let ([all-articles
-	 (map (lambda (file-name)
-		(let* ([a-path (build-path articles-directory file-name)]
+	 (map (lambda (filename)
+		(let* ([a-path (build-path articles-directory filename)]
 		       [an-article 
 			(eval (call-with-input-file a-path
 				(lambda (in) (read in)))
@@ -68,6 +68,7 @@
 					  (cadr modify-date)
 					  #f)
 			    (file-or-directory-modify-seconds a-path))))
+		    (source ,(string-replace (path->string filename) "." "_"))
 		    ,@an-article)))
 	      (directory-list articles-directory))]) 
     (lambda (a-tag)
@@ -209,8 +210,8 @@
 		(img ((alt ,alt)
 		      (style "border-width:0")
 		      (src "https://i.creativecommons.org/l/by/4.0/88x31.png"))))
-	     (a ((href ,(string-append "mailto:" email-address)))
-		,(string-append author "<" email-address ">"))
+	     (address (a ((href ,(string-append "mailto:" email-address)))
+			 ,(string-append author "<" email-address ">")))
 	     (br)
 	     ,text1
 	     (a ((rel "license")
@@ -258,7 +259,8 @@
     ,@(map (lambda (an-article)
 	     `(article
 	       (header
-		(h3 ,@(cdr (assq 'title an-article)))
+		(h3 ((id ,@(cdr (assq 'source an-article))))
+		    ,@(cdr (assq 'title an-article)))
 		(p ((class "modify-date"))
 		   ,(format-date (cadr (assq 'modify-date an-article)))))
 	       (section ,@(cdr (assq 'contents an-article)))
