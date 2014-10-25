@@ -25,9 +25,6 @@
 ;; DEALINGS IN THE SOFTWARE.
 
 
-(: all-tags : (Listof String))
-(define all-tags '("Debian" "KDE" "Scheme" "Emacs" "Vim" "Mozc" "Fcitx"))
-
 (: language-list : (Listof String))
 (define language-list '("en" "hu" "ja"))
 
@@ -76,8 +73,7 @@
 		 "の下に提供されています。"
 		 "クリエイティブ・コモンズ・ライセンス")]))
 
-(provide all-tags
-	 language-list
+(provide language-list
 	 author
 	 email-address
 	 articles-directory

@@ -26,7 +26,6 @@
 
 
 ;; The values defined in `config.rkt' are as follows:
-;;   all-tags            : (Listof String)
 ;;   language-list       : (Listof String)
 ;;   author              : String
 ;;   email-address       : String
@@ -40,6 +39,29 @@
 	 racket/date
 	 (file "config.rkt"))
 
+
+(define add-tags-to-list
+  (let ([tags '()])
+    (lambda (arg)
+      (for-each (lambda (a-tag)
+		  (if (null? tags)
+		      (set! tags (list a-tag))
+		      (let iter ([temp (car tags)]
+				 [compared '()]
+				 [rest (cdr tags)])
+			(unless (string=? a-tag temp)
+			  (if (string<? a-tag temp)
+			      (set! tags
+				    (foldl cons
+					   `(,a-tag ,temp ,@rest)
+					   compared))
+			      (if (null? rest)
+				  (set! tags `(,@tags ,a-tag))
+				  (iter (car rest)
+					(cons temp compared)
+					(cdr rest))))))))
+		arg)
+      tags)))
 
 (define find-articles
   ;; This is a closure. The closure has list of articles, and expect an
@@ -57,6 +79,7 @@
 			(eval (call-with-input-file a-path
 				(lambda (in) (read in)))
 			      (make-base-namespace))])
+		  (add-tags-to-list (cdr (assq 'tag an-article)))
 		  `((modify-date
 		     ,(let ([modify-date (assq 'modify-date an-article)])
 			(if modify-date
@@ -114,7 +137,7 @@
 			,a-tag)
 		   `(li (a ((href ,(append-html-suffix a-tag lang)))
 			   ,a-tag))))
-	     (sort tags string<?))))
+	     tags)))
 
 (define (format-date seconds)
   ;; The return value is included html elements. `seconds' is time in
@@ -211,7 +234,7 @@
 		      (style "border-width:0")
 		      (src "https://i.creativecommons.org/l/by/4.0/88x31.png"))))
 	     (address (a ((href ,(string-append "mailto:" email-address)))
-			 ,(string-append author "<" email-address ">")))
+			 ,(string-append author " <" email-address ">")))
 	     (br)
 	     ,text1
 	     (a ((rel "license")
@@ -232,7 +255,7 @@
 			  ,a-tag))
 		   (p ((class "modify-date"))
 		      ,(get-latest-update (find-articles a-tag)))))
-       all-tags))
+       (add-tags-to-list '())))
 
 (define (make-mainpage lang)
   ;; -> (Listof Any)
@@ -255,7 +278,7 @@
   ;; a-tag : String
   ;; lang : String
   `((section (h2 ,a-tag)
-	    ,(make-tag-html/ul a-tag all-tags lang))
+	    ,(make-tag-html/ul a-tag (add-tags-to-list '()) lang))
     ,@(map (lambda (an-article)
 	     `(article
 	       (header
@@ -306,4 +329,4 @@
 			    (display (make-subpage a-tag lang) out))
 			  #:exists 'replace))
 		      language-list))
-	  all-tags)
+	  (add-tags-to-list '()))
