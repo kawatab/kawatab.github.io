@@ -1,0 +1,8 @@
+`((tag "Debian")
+  (lang "ja")
+  (title "AltGrの利用")
+  (modify-date 2014 2 2)
+  (contents (ul (li "/usr/share/X11/xkb/symbols/pc")
+		(li "/usr/share/X11/xkb/symbols/us"))
+	    (p "国際AltGr相当を書き換える。")
+	    (p "ひらがな/カタカナトグルは単独ではひらがなキーとして、shiftと同時押しではカタカナキーとなる。 ")))
