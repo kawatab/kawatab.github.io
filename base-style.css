@@ -1,5 +1,8 @@
 @charset"utf-8";
 
+/****************************************************************
+ * general
+ ****************************************************************/
 body {
     font-family:sans-serif;
     font-size: medium;
@@ -19,14 +22,6 @@ header, footer {
     color: white;
 }
 
-header a:link, header a:visited, footer a:link, footer a:visited {
-    color: lightblue;
-}
-
-header a:hover, footer a:hover {
-    color: pink;
-}
-
 section, article {
     padding-left: 1ex;
     padding-right: 1ex;
@@ -35,19 +30,15 @@ section, article {
     border-bottom-width: 1pt;
 }
 
-article header, article section, article footer {
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
-    background-color: white;
-    border-bottom-style: none;
-    color: black;
+a:link, a:visited {
+    color: navy;
 }
 
-footer img {
-    float: right;
+a:hover {
+    color: blue;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
@@ -62,29 +53,29 @@ h2 {
 }
 
 h3 {
+    margin-top: 0.5em;
     margin-bottom: 0;
     font-size: x-large;
 }
 
 h4 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     font-size: large;
+}
+
+p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 p.modify-date {
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 0.5em
     font-size: small;
 }
 
-a:link, a:visited {
-    color: navy;
-}
-
-a:hover {
-    color: blue;
-}
-
-pre.command, pre.config {
+pre.command, pre.config, pre.code {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     background-color: black;
@@ -111,12 +102,17 @@ td {
     vertical-align: text-top;
 }
 
-dt {
-    font-weight: bold;
-}
-
+/* for ul.tags */
 ul.tags {
     padding: 0 0 0 0;
+}
+
+ul.tags li a:link, ul.tags li a:visited {
+    color: white;
+}
+
+ul.tags li a:hover {
+    color: pink;
 }
 
 ul.tags li {
@@ -137,10 +133,41 @@ ul.tags li a {
     text-decoration: none;
 }
 
-ul.tags li a:link, ul.tags li a:visited {
-    color: white;
+/****************************************************************
+ * in header
+ ****************************************************************/
+header a:link, header a:visited, footer a:link, footer a:visited {
+    color: lightblue;
 }
 
-ul.tags li a:hover {
+header a:hover, footer a:hover {
     color: pink;
+}
+
+/****************************************************************
+ * in article
+ ****************************************************************/
+article header, article section, article footer {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    background-color: white;
+    border-bottom-style: none;
+    color: black;
+}
+
+/****************************************************************
+ * in footer
+ ****************************************************************/
+footer p {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+footer address {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+footer img {
+    float: right;
 }
