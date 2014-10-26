@@ -1,5 +1,0 @@
-`((tag "KDE" "Debian")
-  (lang "ja")
-  (title "fcitxのアイコンをパネルに表示させる")
-  (modify-date 2014 10 21)
-  (contents (p "入力方法パネルのウィジェットをパネルに追加する。")))

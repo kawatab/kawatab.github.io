@@ -41,6 +41,12 @@
 
 
 (define add-tags-to-list
+  ;; This is a closure. The closure has list of tags, and expect an argument
+  ;; as list of tags. List is sorted with order by alphabet without any
+  ;; duplicated tags. The return value is the list of tags in the closure.
+  ;; If the argument is '(), the function return the list of tags without
+  ;; any action.
+  ;; (-> String (Listof String))
   (let ([tags '()])
     (lambda (arg)
       (for-each (lambda (a-tag)
@@ -63,37 +69,49 @@
 		arg)
       tags)))
 
+(define (read-all-articles filename)
+  ;; This function reads a file that name matches `filename', and modifies
+  ;; articles. While in this process, the function adds new tags to
+  ;; `add-tags-to-list'. The return values is list of all articles in the
+  ;; file named `filename'. If any articles do not have any pairs of
+  ;; 'modify-date, this function makes pairs from modify-date of file system.
+  ;; -> (Listof Any)
+  ;; filename : Path
+  (let* ([a-path (build-path articles-directory filename)]
+	 [articles (eval (call-with-input-file a-path
+			   (lambda (in) (read in)))
+			 (make-base-namespace))])
+    (map (lambda (an-article)
+	   (add-tags-to-list (cdr (assq 'tag an-article)))
+	   `((modify-date
+	      ,(let ([modify-date (assq 'modify-date an-article)])
+		 (if modify-date
+		     (find-seconds 0
+				   0
+				   0
+				   (cadddr modify-date)
+				   (caddr modify-date)
+				   (cadr modify-date)
+				   #f)
+		     (file-or-directory-modify-seconds a-path))))
+	     ,@an-article))
+	 articles)))
+
 (define find-articles
   ;; This is a closure. The closure has list of articles, and expect an
   ;; argument as string. The location of articles is set to
   ;; `articles-directory'. The return values is list of articles that match
-  ;; with the tag given as an argument.
-  ;; The list of articles are sorted with order by date. If any articles do
-  ;; not have pairs of 'modify-date, this function makes pairs from
-  ;; modify-date of filesystem.
+  ;; with the tag given as an argument. The list of articles are sorted with
+  ;; order by date.
   ;; (-> String (Listof Any))
   (let ([all-articles
-	 (map (lambda (filename)
-		(let* ([a-path (build-path articles-directory filename)]
-		       [an-article 
-			(eval (call-with-input-file a-path
-				(lambda (in) (read in)))
-			      (make-base-namespace))])
-		  (add-tags-to-list (cdr (assq 'tag an-article)))
-		  `((modify-date
-		     ,(let ([modify-date (assq 'modify-date an-article)])
-			(if modify-date
-			    (find-seconds 0
-					  0
-					  0
-					  (cadddr modify-date)
-					  (caddr modify-date)
-					  (cadr modify-date)
-					  #f)
-			    (file-or-directory-modify-seconds a-path))))
-		    (source ,(string-replace (path->string filename) "." "_"))
-		    ,@an-article)))
-	      (directory-list articles-directory))]) 
+	 (apply append
+		(map read-all-articles
+		     (filter (lambda (filename)
+			       (not
+				(memq (string-ref (path->string filename) 0)
+				      '(#\# #\~ #\.))))
+			     (directory-list articles-directory))))])
     (lambda (a-tag)
       (filter-map (lambda (an-article)
 		    (cond [(assq 'tag an-article) =>
@@ -140,7 +158,7 @@
 	     tags)))
 
 (define (format-date seconds)
-  ;; The return value is included html elements. `seconds' is time in
+  ;; The return value is included HTML elements. `seconds' is time in
   ;; seconds since midnight UTC, January 1, 1970.
   ;; -> (Listof Any)
   ;; seconds : Real
@@ -158,7 +176,7 @@
 
 (define (append-html-suffix name lang)
   ;; This function appends suffix, ".html", "-hu.html" or "-ja.html". The
-  ;; applied suffix depends on `lang'. `name' is converted to downcase.
+  ;; applied suffix depends on `lang'. `name' is converted to down case.
   ;; -> String
   ;; name : String
   ;; lang : String
@@ -196,7 +214,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (make-head title lang)
-  ;; The author name is set to `author', and the author's e-mail addres is
+  ;; The author name is set to `author', and the author's e-mail address is
   ;; set to `email-address'. The file name of CSS that is applied is set to
   ;; `stylesheet-filename'.
   ;; -> (Listof Any)
@@ -282,7 +300,10 @@
     ,@(map (lambda (an-article)
 	     `(article
 	       (header
-		(h3 ((id ,@(cdr (assq 'source an-article))))
+		(h3 ,@(let ([id (assq 'id an-article)])
+		       (if id
+			   `(((id ,@(cdr id))))
+			   '()))
 		    ,@(cdr (assq 'title an-article)))
 		(p ((class "modify-date"))
 		   ,(format-date (cadr (assq 'modify-date an-article)))))
