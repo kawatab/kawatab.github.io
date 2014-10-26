@@ -1,9 +1,23 @@
-`(((tag "Racket" "Emacs")
-   (lang "en")
+`(((tag "Racket")
+   (lang "ja")
+   (title "webpage-generator.rktを開発中")
+   (modify-date 2014 10 26)
+   (id "2014102602")
+   (contents
+    (p "タグ付けされた記事からタグごとにHTMLファイルを生成するスクリプトを開発中です。日本語、英語、ハンガリー語の3ヶ国語に対応しています。")
+    (p "Racketで書かれています。Racketの独自仕様を利用しているため、R5RSやR6RSのSchemeでは動きません。")
+    (p (a ((href "https://github.com/kawatab/kawatab.github.io"))
+	  "https://github.com/kawatab/kawatab.github.io"))))
+
+
+  ((tag "Racket" "Emacs")
+   (lang "en" "hu" "ja")
    (title "Geiser")
    (modify-date 2014 10 26)
    (id "2014102602")
    (contents
+    (p (a ((href "http://docs.racket-lang.org/guide/Emacs.html"))
+	  "http://docs.racket-lang.org/guide/Emacs.html"))
     (blockquote ((cite "http://docs.racket-lang.org/guide/Emacs.html"))
 		(a ((href "http://www.nongnu.org/geiser/"))
 		   "Geiser")
@@ -38,7 +52,36 @@
    (contents (p "入力方法パネルのウィジェットをパネルに追加する。")))
 
 
-  ((tag "Mozc" "Fcitx" "Emacs" "Debian")
+  ((tag "X11" "C++")
+   (lang "en")
+   (modify-date 2014 9 28)
+   (id "2014092802")
+   (title "KeyboardQuery")
+   (contents
+    (p "This program gets keyboard configuration as "
+       (code "setxkb -query")
+       ". If you want to know how to get keyboard model or layout by C++ program, this program is helpful for you.")
+    (p " If you want to know the further details, you should get the source of "
+       (code "setxkbmap.c")
+       ".")
+
+    (p (a ((href "https://github.com/kawatab/KeyboardQuery"))
+	  "https://github.com/kawatab/KeyboardQuery"))))
+
+  ((tag "X11" "C++")
+   (lang "ja")
+   (modify-date 2014 9 28)
+   (id "2014092802ja")
+   (title "KeyboardQuery")
+   (contents
+    (p "このプログラムはC++のプログラムからキーボードモデルやLayoutを取得するようなプログラムを書くときに参考になるものです。より詳しい情報が必要な場合は、"
+       (code "setxkbmap.c")
+       "のソースを探してみてください。") 
+    (p (a ((href "https://github.com/kawatab/KeyboardQuery"))
+	  "https://github.com/kawatab/KeyboardQuery"))))
+
+
+  ((tag "Mozc" "Fcitx" "Emacs" "Debian" "iBus")
    (lang "ja")
    (modify-date 2014 9 28)
    (id "2014092801")
@@ -64,14 +107,60 @@
 	  "https://github.com/kawatab/mozc-tsuki"))))
 
 
-  ((tag "Debian" "VLC")
-   (lang "ja")
-   (title "Canonのaviからmp4に変換")
+  ((tag "VLC")
+   (lang "en")
+   (title "Convert Canon avi file to mp4")
    (modify-date 2014 6 14)
    (id "2014061401")
    (contents 
     (pre ((class "command"))
 	 (code "$ a=\"MVI_0995\"; vlc -I dummy -vvv \"$a.AVI\" --sout \"#transcode{vcodec=h264,vb=1200,acodec=mp3,ab=128,channels=1,samplerate=11025}:standard{mux=mp4,dst=\"$a.mp4\",access=file}\" vlc://quit"))))
+
+
+  ((tag "VLC")
+   (lang "hu")
+   (title "Konvertálás Canon avi fájlt mp4 fájlba")
+   (modify-date 2014 6 14)
+   (id "2014061401hu")
+   (contents 
+    (pre ((class "command"))
+	 (code "$ a=\"MVI_0995\"; vlc -I dummy -vvv \"$a.AVI\" --sout \"#transcode{vcodec=h264,vb=1200,acodec=mp3,ab=128,channels=1,samplerate=11025}:standard{mux=mp4,dst=\"$a.mp4\",access=file}\" vlc://quit"))))
+
+
+  ((tag "VLC")
+   (lang "ja")
+   (title "Canonのaviからmp4に変換")
+   (modify-date 2014 6 14)
+   (id "2014061401ja")
+   (contents 
+    (pre ((class "command"))
+	 (code "$ a=\"MVI_0995\"; vlc -I dummy -vvv \"$a.AVI\" --sout \"#transcode{vcodec=h264,vb=1200,acodec=mp3,ab=128,channels=1,samplerate=11025}:standard{mux=mp4,dst=\"$a.mp4\",access=file}\" vlc://quit"))))
+
+
+  ((tag "SQL")
+   (lang "ja")
+   (title "Postgresのメモ")
+   (modify-date 2014 6 3)
+   (id "2014060301")
+   (contents 
+    (pre ((class "command"))
+	 (code "su - postgres\n"
+	       "\n"
+	       "psql -l\n"
+	       "\n"
+	       "psql [username]"))
+    (section
+     (h4 "help")
+     (table (tr (td "\\d"))
+	    (tr (td "\\q"))
+	    (tr (td "\\dt") (td "リレーションの表示"))
+	    (tr (td "\\z") (td "アクセス権の表示")))
+
+     (pre ((class "command"))
+	  (code "GRANT ALL PRIVILEGES ON sogo_users TO sogo;"))
+
+     (pre ((class "command"))
+	  (code "SELECT *FROM sogo_users;")))))
 
 
   ((tag "Debian" "Sogo")
@@ -248,7 +337,7 @@ INSERT INTO sogo_users VALUES ('paul', 'paul', MD5('zxc'), 'Paul Example', 'paul
 	     (p "ひらがな/カタカナトグルは単独ではひらがなキーとして、shiftと同時押しではカタカナキーとなる。 ")))
 
 
-  ((tag "Debian" "Mozc")
+  ((tag "Debian" "Mozc" "iBus")
    (lang "ja")
    (title "Mozcの書き換え")
    (modify-date 2014 2 1)
