@@ -73,6 +73,21 @@
 		 "の下に提供されています。"
 		 "クリエイティブ・コモンズ・ライセンス")]))
 
+(: get-expression-of-number : Number String -> String)
+(define (get-expression-of-number num lang)
+  (cond [(eq? lang "en")
+	 (cond [(zero? num) "No articles"]
+	       [(= num 1) "1 article"]
+	       [else (format "~a articles")])]
+	[(eq? lang "hu")
+	 (if (zero? num)
+	     "Nincs cikk"
+	     (format "~a cikk" num))]
+	[else
+	 (if (zero? num)
+	     "記事はありません"
+	     (format "~a個の記事" num))]))
+
 (provide language-list
 	 author
 	 email-address
@@ -80,4 +95,5 @@
 	 stylesheet-filename
 	 get-title
 	 get-description
-	 get-license-text)
+	 get-license-text
+	 get-expression-of-number)
