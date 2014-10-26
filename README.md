@@ -1,6 +1,6 @@
 # webpage-generator.rkt
 
-This program generate web pages from article files. All articles and tag pages are linked each other.
+This program generates web pages from article files. All articles and tag pages are linked each other.
 
 ## Example
 
@@ -19,13 +19,13 @@ https://github.com/kawatab/kawatab.github.io
 
 ### Programs
 
-racket (>= 5.3.6)
+- racket (>= 5.3.6)
 
 
 ### Files
 
-webpage-generator.rkt
-config.rkt
+- webpage-generator.rkt
+- config.rkt
 
 
 ### Article files
