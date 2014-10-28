@@ -78,7 +78,7 @@
   (cond [(eq? lang "en")
 	 (cond [(zero? num) "No articles"]
 	       [(= num 1) "1 article"]
-	       [else (format "~a articles")])]
+	       [else (format "~a articles" num)])]
 	[(eq? lang "hu")
 	 (if (zero? num)
 	     "Nincs cikk"
