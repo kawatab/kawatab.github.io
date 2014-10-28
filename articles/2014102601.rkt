@@ -1,4 +1,26 @@
-`(((tag "Racket")
+`(((tag "X11" "Debian")
+   (lang "en")
+   (title "xkb-data")
+   (modify-date 2014 10 28)
+   (id "2014102801")
+   (contents
+   (p "Using arrow keys, Home, End, PgUp, PgDn and Japanese keys with combination of AltGr and alphabets")
+    (p (a ((href "https://github.com/kawatab/xkb-data"))
+	  "https://github.com/kawatab/xkb-data"))))
+
+  
+  ((tag "X11" "Debian")
+   (lang "ja")
+   (title "xkb-data")
+   (modify-date 2014 10 28)
+   (id "2014102801ja")
+   (contents
+    (p "カーソルキーやHome、End、PgUpPgDn日本語キーを右Altキーとアルファベットの組み合わせで打つことができます。")
+    (p (a ((href "https://github.com/kawatab/xkb-data"))
+	  "https://github.com/kawatab/xkb-data"))))
+
+  
+  ((tag "Racket")
    (lang "ja")
    (title "webpage-generator.rktを開発中")
    (modify-date 2014 10 26)
@@ -41,7 +63,7 @@
 	  "The Typed Racket Guide"))
     (p (a ((href "http://docs.racket-lang.org/ts-reference/index.html"))
 	  "The Typed Racket Reference"))))
-	     
+  
 
 
   ((tag "KDE" "Fcitx")
@@ -332,7 +354,7 @@ INSERT INTO sogo_users VALUES ('paul', 'paul', MD5('zxc'), 'Paul Example', 'paul
    (modify-date 2014 2 2)
    (id "2014020201")
    (contents (ul (li (code "/usr/share/X11/xkb/symbols/pc"))
-	         (li (code "/usr/share/X11/xkb/symbols/us")))
+		 (li (code "/usr/share/X11/xkb/symbols/us")))
 	     (p "国際AltGr相当を書き換える。")
 	     (p "ひらがな/カタカナトグルは単独ではひらがなキーとして、shiftと同時押しではカタカナキーとなる。 ")))
 
