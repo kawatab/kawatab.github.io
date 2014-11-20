@@ -307,7 +307,8 @@
   ;; lang : String
   (map (lambda (a-tag) 
 	 (let ([articles (find-articles a-tag lang)])
-	   `(section (h2 (a ((href ,(append-html-suffix a-tag lang)))
+	   `(section ((class "index"))
+		     (h2 (a ((href ,(append-html-suffix a-tag lang)))
 			    ,a-tag))
 		     (p ((class "number-of-articles"))
 			,(get-expression-of-number (length articles) lang))

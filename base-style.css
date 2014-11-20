@@ -30,6 +30,16 @@ section, article {
     border-bottom-width: 1pt;
 }
 
+section.index {
+    border-color: gray;
+    border-style: solid;
+    border-width: 0 1pt 1pt 0;
+    vertical-align: top;
+    width: 12em;
+    height: 8em;
+    display: inline-block;
+}
+
 a:link, a:visited {
     color: navy;
 }
@@ -118,7 +128,7 @@ ul.tags li a:hover {
 ul.tags li {
     display: inline;
     margin-right: 1pt;
-    padding: 1pt 1pt 1pt 1pt;
+    padding: 1pt 2pt 1pt 2pt;
     background-color: green;
     color: white;
     font-size: small;

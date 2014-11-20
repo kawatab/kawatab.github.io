@@ -1,4 +1,103 @@
-`(((tag "X11" "Debian")
+`(((tag "Racket" "Debian")
+   (lang "ja")
+   (title "Debianのテスト版のRacketのバージョンが6.1になった")
+   (modify-date 2014 11 20)
+   (id "2014112002")
+   (contents
+    (p "typed-racketがまともに使えるようになったのかな？今は、マイSchemeの開発に集中しているので、あまり手を出せない。")))
+
+
+  ((tag "Emacs" "Debian")
+   (lang "ja")
+   (title "M-x is undefined")
+   (modify-date 2014 11 20)
+   (id "2014112001")
+   (contents
+    (p "GUIでEmacsを動かした時にM-xが使えなくなっている。テスト版のDebianを使っていて、Emacsのバージョンが比較的最新なのが問題らしい。とりあえず、ターミナルの方では使えるのでそれほど問題ではない。")))
+
+
+  ((tag "CL" "SBCL" "Debian")
+   (lang "en")
+   (title "Install Quicklisp")
+   (modify-date 2014 10 29)
+   (id "2014102902")
+   (contents
+    (p (a ((href "http://golems.github.io/motion-grammar-kit/install.html"))
+	  "http://golems.github.io/motion-grammar-kit/install.html"))
+    (blockquote ((cite "http://golems.github.io/motion-grammar-kit/install.html"))
+		(p "Quicklisp is a package manager for lisp, similar to CPAN, RubyGems, Python's easy_install, and ELPA. At the time of writing, it is the easiest way to install Lisp packages. You can install Quicklisp from "
+		   (a ((href "http://www.quicklisp.org/."))
+		      "http://www.quicklisp.org/")
+		   ".")
+
+		(p "Alternatively, Debian Wheezy and Ubuntu Precise (or later) contain a package for quicklisp:")
+
+		(pre ((class "command"))
+		     (code "$ sudo apt-get install cl-quicklisp"))
+
+		(p "Then, the following command will setup quicklisp for your user account:")
+
+		(pre ((class "command"))
+		     (code "$ sbcl --load /usr/share/cl-quicklisp/quicklisp.lisp \\\n"
+			   "       --eval '(quicklisp-quickstart:install)'       \\\n"
+			   "       --eval '(ql:add-to-init-file)'                \\\n"
+			   "       --eval '(quit)'")))))
+
+
+  ((tag "Emacs" "CL" "SBCL" "Debian")
+   (lang "en")
+   (title "Installing SBCL")
+   (modify-date 2014 10 29)
+   (id "2014102901")
+   (contents
+    (h4 "Installing")
+    (pre ((class "command"))
+	 (code "# aptitude install sbcl"))
+
+    (h4 "emacs settings")
+    (p "Write the following code into " (code "~/.emacs") " or " (code "~/.emacs.d/init.el"))
+    (pre ((class "config"))
+	 (code "(add-to-list 'load-path \"/usr/share/common-lisp/source/slime\")\n"
+	       "(setq inferior-lisp-program \"/usr/bin/sbcl\")\n"
+	       "(slime-setup)"))
+
+    (h4 "Start REPL")
+    (pre ((class "command"))
+	 (code "M-x slime"))
+
+    (h4 "Exit REPL")
+    (pre ((class "command"))
+	 (code "(sb-ext::quit)"))))
+
+
+  ((tag "Emacs" "CL" "SBCL" "Debian")
+   (lang "ja")
+   (title "SBCLのインストール")
+   (modify-date 2014 10 29)
+   (id "2014102901ja")
+   (contents
+    (h4 "インストール")
+    (pre ((class "command"))
+	 (code "# aptitude install sbcl"))
+
+    (h4 "emacsの設定")
+    (p (code "~/.emacs") "もしくは~" (code "/.emacs.d/init.el") "に次の内容を書き入れる。")
+    (pre ((class "config"))
+	 (code "(add-to-list 'load-path \"/usr/share/common-lisp/source/slime\")\n"
+	       "(setq inferior-lisp-program \"/usr/bin/sbcl\")\n"
+	       "(slime-setup)"))
+
+    (h4 "REPLの開始")
+    (pre ((class "command"))
+	 (code "M-x slime"))
+
+    (h4 "REPLの終了")
+    (pre ((class "command"))
+	 (code "(sb-ext::quit)"))))
+
+
+
+  ((tag "X11" "Debian")
    (lang "en")
    (title "xkb-data")
    (modify-date 2014 10 28)
