@@ -1,4 +1,73 @@
-`(((tag "Racket" "Debian")
+`(((tag "C++")
+   (lang "hu")
+   (title "Várakozás (sleep) C++ nyelven")
+   (modify-date 2015 01 04)
+   (id "2015010403")
+   (contents
+    (pre ((class "code"))
+	 (code "#include <iostream>\n"
+	       "#include <unistd.h>\n"
+	       "\n"
+	       "int main() {\n"
+	       "  int sec(5);\n"
+	       "\n"
+	       "  std::cout << \"Wait \" << sec << \" sec.\" << std::endl;\n"
+	       "\n"
+	       "  sleep(sec);\n"
+	       "\n"
+	       "  std::cout << \"Done.\" << std::endl;\n"
+	       "\n"
+	       "  return 0;\n"
+	       "}"))))
+
+
+  ((tag "C++")
+   (lang "en")
+   (title "Sleep command in C++")
+   (modify-date 2015 01 04)
+   (id "2015010402")
+   (contents
+    (pre ((class "code"))
+	 (code "#include <iostream>\n"
+	       "#include <unistd.h>\n"
+	       "\n"
+	       "int main() {\n"
+	       "  int sec(5);\n"
+	       "\n"
+	       "  std::cout << \"Wait \" << sec << \" sec.\" << std::endl;\n"
+	       "\n"
+	       "  sleep(sec);\n"
+	       "\n"
+	       "  std::cout << \"Done.\" << std::endl;\n"
+	       "\n"
+	       "  return 0;\n"
+	       "}"))))
+
+
+  ((tag "C++")
+   (lang "ja")
+   (title "C++で指定の時間だけスリープさせる")
+   (modify-date 2015 01 04)
+   (id "2015010401")
+   (contents
+    (pre ((class "code"))
+	 (code "#include <iostream>\n"
+	       "#include <unistd.h>\n"
+	       "\n"
+	       "int main() {\n"
+	       "  int sec(5);\n"
+	       "\n"
+	       "  std::cout << \"Wait \" << sec << \" sec.\" << std::endl;\n"
+	       "\n"
+	       "  sleep(sec);\n"
+	       "\n"
+	       "  std::cout << \"Done.\" << std::endl;\n"
+	       "\n"
+	       "  return 0;\n"
+	       "}"))))
+
+
+  ((tag "Racket" "Debian")
    (lang "ja")
    (title "Debianのテスト版のRacketのバージョンが6.1になった")
    (modify-date 2014 11 20)
