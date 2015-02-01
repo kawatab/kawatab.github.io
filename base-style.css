@@ -4,13 +4,20 @@
  * general
  ****************************************************************/
 body {
-    font-family:sans-serif;
     font-size: medium;
     font-color: black;
     /* background-color: white; */
     background-color: white;
     padding: 0 0 0 0;
     margin: 0 0 0 0;
+}
+
+body:lang(en), body:lang(hu) {
+    font-family: serif;
+}
+
+body:lang(ja) {
+    font-family: sans-serif;
 }
 
 header, footer {
@@ -31,12 +38,12 @@ section, article {
 }
 
 section.index {
-    border-color: gray;
-    border-style: solid;
-    border-width: 0 1pt 1pt 0;
+    /*border-color: gray;
+    border-style: solid;*/
+    border-width: 0;
     vertical-align: top;
-    width: 23%;
-    height: 8em;
+    width: 15em; /*23%;*/
+    /* height: 8em;*/
     display: inline-block;
 }
 
@@ -152,6 +159,29 @@ header a:link, header a:visited, footer a:link, footer a:visited {
 
 header a:hover, footer a:hover {
     color: pink;
+}
+
+/****************************************************************
+ * in index
+ ****************************************************************/
+ul.summary {
+    padding-left: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ul.summary li {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+    font-size: small;
+    /*font-weight: bold;*/
+}
+
+p.summary {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+    font-size: small;
+    /*font-weight: bold;*/
 }
 
 /****************************************************************

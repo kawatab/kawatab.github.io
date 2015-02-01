@@ -40,13 +40,13 @@
 (: stylesheet-filename : String)
 (define stylesheet-filename "base-style.css")
 
-(: get-title : String -> String)
+(: get-title (-> String String))
 (define (get-title lang)
   (cond [(eq? "en" lang) "Kawatab's tips"]
 	[(eq? "hu" lang) "Kawatab tippek"]
 	[else "Kawatabの技術メモ"]))
 
-(: get-description : String -> String)
+(: get-description (-> String String))
 (define (get-description lang)
   (cond [(eq? lang "en")
 	 "This is my tips for using and setting up Computer, mainly Linux."]
@@ -55,7 +55,7 @@
 	[else
 	 "主にLinuxを中心としたコンピュータ関連の技術情報を公開しています。"]))
 
-(: get-license-text : String -> (values String String String String))
+(: get-license-text (-> String (values String String String String)))
 (define (get-license-text lang)
   (cond [(eq? lang "en")
 	 (values "This work is licensed under a "
@@ -73,7 +73,7 @@
 		 "の下に提供されています。"
 		 "クリエイティブ・コモンズ・ライセンス")]))
 
-(: get-expression-of-number : Number String -> String)
+(: get-expression-of-number (-> Number String String))
 (define (get-expression-of-number num lang)
   (cond [(eq? lang "en")
 	 (cond [(zero? num) "No articles"]
@@ -88,6 +88,12 @@
 	     "記事はありません"
 	     (format "~a個の記事" num))]))
 
+(: get-expression-of-more (-> String String))
+(define (get-expression-of-more lang)
+  (cond [(eq? lang "en") "more..."]
+	[(eq? lang "hu") "több..."]
+	[else "続き..."]))
+
 (provide language-list
 	 author
 	 email-address
@@ -96,4 +102,5 @@
 	 get-title
 	 get-description
 	 get-license-text
-	 get-expression-of-number)
+	 get-expression-of-number
+	 get-expression-of-more)

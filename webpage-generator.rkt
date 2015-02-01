@@ -268,7 +268,10 @@
   ;; -> (Listof Any)
   ;; title : String
   ;; lang : String
-  `(header (h1 ,(get-title lang))
+  `(header (h1 (a ((href ,(cond [(eq? lang "en") "index.html"]
+				[(eq? lang "hu") "index-hu.html"]
+				[else "index-ja.html"])))
+		  ,(get-title lang)))
 	   (p ,(get-description lang)
 	      ,@(make-language-selector (make-safe-name title) lang))))
 
@@ -298,6 +301,29 @@
 		"."))))
 
 
+(define (make-summary articles filename expression-of-more)
+  (let iter ([rest articles] [result '()] [n 3])
+    (cond [(null? rest)
+	   `((ul ((class "summary"))
+		 ,@(reverse result)))]
+	  [(zero? n)
+	   `((ul ((class "summary"))
+		 ,@(reverse result))
+	     (p ((class "summary"))
+		(a ((href ,(string-append filename
+					  "#"
+					  (cadr (assq 'id (car rest))))))
+		   ,expression-of-more)))]
+	  [else
+	   (iter (cdr rest)
+		 (cons `(li (a ((href
+				 ,(string-append filename
+						 "#"
+						 (cadr (assq 'id (car rest))))))
+			       ,(cadr (assq 'title (car rest)))))
+		       result)
+		 (- n 1))])))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; for making main pages                                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -305,16 +331,19 @@
 (define (make-mainpage-contents lang)
   ;; -> (Listof Any)
   ;; lang : String
-  (map (lambda (a-tag) 
-	 (let ([articles (find-articles a-tag lang)])
-	   `(section ((class "index"))
-		     (h2 (a ((href ,(append-html-suffix a-tag lang)))
-			    ,a-tag))
-		     (p ((class "number-of-articles"))
-			,(get-expression-of-number (length articles) lang))
-		     (p ((class "modify-date"))
-			,(get-latest-update articles)))))
-       (add-tags-to-list '())))
+  (let ([expression-of-more (get-expression-of-more lang)])
+    (map (lambda (a-tag) 
+	   (let ([filename (append-html-suffix a-tag lang)]
+		 [articles (find-articles a-tag lang)])
+	     `(section ((class "index"))
+		       (h2 (a ((href ,filename))
+			      ,a-tag))
+		       (p ((class "number-of-articles"))
+			  ,(get-expression-of-number (length articles) lang))
+		       (p ((class "modify-date"))
+			  ,(get-latest-update articles))
+		       ,@(make-summary articles filename expression-of-more))))
+	 (add-tags-to-list '()))))
 
 (define (make-mainpage lang)
   ;; -> (Listof Any)

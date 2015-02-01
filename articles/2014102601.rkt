@@ -1,4 +1,36 @@
-`(((tag "Mozc" "Fcitx" "Emacs")
+`(((tag "KDE")
+   (lang "ja")
+   (title "root権限でのネットワーク接続の設定")
+   (modify-date 2015 02 01)
+   (id "2015002011")
+   (contents
+    (p "kdesudoを使ってroot権限で" (code "kde-nm-connection-editor") "を実行する。")
+    (pre ((class "command"))
+	 (code "kdesudo kde-nm-connection-editor"))))
+
+
+  ((tag "KDE")
+   (lang "en")
+   (title "Network connection setting as root privilege")
+   (modify-date 2015 02 01)
+   (id "2015002012")
+   (contents
+    (p "run " (code "kde-nm-connection-editor") " with kdesudo as root privilege")
+    (pre ((class "command"))
+	 (code "kdesudo kde-nm-connection-editor"))))
+
+  ((tag "KDE")
+   (lang "hu")
+   (title "Hálózati kapcsolat beállítása root jogosultsággal")
+   (modify-date 2015 02 01)
+   (id "2015002013")
+   (contents
+    (p "fut " (code "kdesudo kde-nm-connection-editor") " root jogosultsággal")
+    (pre ((class "command"))
+	 (code "kdesudo kde-nm-connection-editor"))))
+
+
+  ((tag "Mozc" "Fcitx" "Emacs")
    (lang "ja")
    (title "月配列で漢字直接入力")
    (modify-date 2015 01 18)
