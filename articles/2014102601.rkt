@@ -1,4 +1,62 @@
-`(((tag "KDE")
+`(((tag "Kotlin" "Gradle")
+   (lang "ja")
+   (title "Kotlinの開発環境")
+   (modify-date 2019 03 10)
+   (id "201903101")
+   (contents
+    (h4 "導入")
+    (p "Kotlinのサイトにある方法でインストールする。SDKMAN!を使う。")
+    (p (a ((href "https://kotlinlang.org/docs/tutorials/command-line.html"))
+	  "Working with the Command Line Compiler - Kotlin Programming Language"))
+    (p "Gradleをインストールする。")
+    (p (a ((href "https://gradle.org/install/")) "Gradle | Installation"))
+    (h4 "使い方")
+    (p "雛形を作成する。srcディレクトリにあるファイルを書き換えればよい。")
+    (pre ((class "command"))
+	 (code "$ gradle init"))
+    (p "ビルドする。build/distributionsにあるファイルはそのままコピーして利用できる。")
+    (pre ((class "command"))
+	 (code "$ gradle build"))
+    (p "実行する。")
+    (pre ((class "command"))
+	 (code "$ gradle run"))))
+
+  ((tag "KDE")
+   (lang "ja")
+   (title "KDEのDolphinで検索")
+   (modify-date 2015 02 21)
+   (id "2015002211")
+   (contents
+    (p "KDEのDolphinで検索できるようにするにはBalooをインストールしないといけない。")
+    (p (a ((href "https://forum.kde.org/viewtopic.php?f=154&t=122256"))
+      "'System Settings' > 'Desktop Search' missing, Debian Jessie・KDE Community Forums"))))
+
+  ((tag "KDE")
+   (lang "en")
+   (title "To search with Dolphin in KDE.")
+   (modify-date 2015 02 21)
+   (id "2015002212")
+   (contents
+    (p "To search with Dolphin in KDE, you have to install baloo.")
+    (p (a ((href "https://forum.kde.org/viewtopic.php?f=154&t=122256"))
+	  "'System Settings' > 'Desktop Search' missing, Debian Jessie・KDE Community Forums"))))
+
+  ((tag "Racket")
+   (lang "ja")
+   (title "文字列をUTF-8に変換するRacketのコード")
+   (modify-date 2015 02 21)
+   (id "2015002213")
+   (contents
+    (pre ((class "code"))
+	 (code "(let ([c \"文字列\"])\n"
+	       "  (display (apply string-append\n"
+	       "                  (map (lambda (x)\n"
+	       "                         (string-append \"\\x\\\n"
+	       "                                        (number->string x 16)))\n"
+	       "                       (bytes->list (string->bytes/utr-8 c)))))\n"
+	       "  (newline))"))))
+
+  ((tag "KDE")
    (lang "ja")
    (title "root権限でのネットワーク接続の設定")
    (modify-date 2015 02 01)
